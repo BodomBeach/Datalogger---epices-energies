@@ -1,0 +1,26 @@
+<h1>Daily statistics</h1>
+
+<%= form_tag(:hourly_productions, method: :get, remote: false) do %>
+  <%= select_tag :selected_day, options_for_select(@available_days.unshift("Select a day")), onchange: "this.form.submit();" %>
+<% end %>
+
+<% if @selected_day.present? %>
+  <h2>Report for <%= @selected_day.to_date.strftime("%d/%m/%y") %></h2><br>
+  <h3>Total energy produced: <%= @total_daily_production.energy %></h3>
+  <table>
+    <tr>
+      <td>ID</td>
+      <td>Time</td>
+      <td>Energy</td>
+    </tr>
+    <% @hourly_productions.each do |hp| %>
+    <tr>
+      <td><%= hp.inverter.id %></td>
+      <td><%= hp.production_hour.strftime("%Hh") %></td>
+      <td><%= hp.energy %></td>
+    </tr>
+    <% end %>
+  </table>
+
+<% end %>
+<%= link_to 'Retour', root_path %>

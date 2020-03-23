@@ -1,0 +1,2 @@
+Inverter.create!
+Inverter.create!

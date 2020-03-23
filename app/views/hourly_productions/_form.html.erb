@@ -1,0 +1,5 @@
+<%= form_with url: bulk_create_hourly_productions_path, method: :post, local: true do |form| %>
+  <p>Import a CSV file:</p>
+  <%= form.file_field :file, accept: ".csv" %><br>
+  <%= form.submit "Import" %>
+<% end %>
